@@ -141,7 +141,7 @@ where
 
 Alternatively this plugin can be installed using the Phonegap CLI.
 
-1) Navigaate to the root folder for your phonegap project.
+1) Navigate to the root folder for your phonegap project.
 2) Run the command.
 
 ```sh
@@ -152,6 +152,15 @@ phonegap local plugin add https://github.com/phonegap-build/PushPlugin.git
 ```
 
 For additional info, take a look at the [Plugman Documentation](https://github.com/apache/cordova-plugman/blob/master/README.md)
+
+### Android
+An additional manual step is required:
+
+Check that the launch mode for the main Cordova Activity is one of the **[singleXXX](http://developer.android.com/guide/topics/manifest/activity-element.html#lmode)** options in **AndroidManifest.xml**.
+
+```xml
+<activity ... android:launchMode="singleTop">
+```
 
 ## Plugin API
 
