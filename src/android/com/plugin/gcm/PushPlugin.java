@@ -24,6 +24,7 @@ import com.google.android.gcm.*;
 public class PushPlugin extends CordovaPlugin {
 	public static final String TAG = "PushPlugin";
 	
+	public static final String SETUP = "setup";
 	public static final String REGISTER = "register";
 	public static final String UNREGISTER = "unregister";
 	public static final String EXIT = "exit";
@@ -49,7 +50,7 @@ public class PushPlugin extends CordovaPlugin {
 
 		Log.v(TAG, "execute: action=" + action);
 
-		if (REGISTER.equals(action)) {
+		if (REGISTER.equals(action) || SETUP.equals(action)) {
 
 			Log.v(TAG, "execute: data=" + data.toString());
 
@@ -64,7 +65,10 @@ public class PushPlugin extends CordovaPlugin {
 
 				Log.v(TAG, "execute: ECB=" + gECB + " senderID=" + gSenderID);
 
-				GCMRegistrar.register(getApplicationContext(), gSenderID);
+				if (REGISTER.equals(action)) {
+					// Do not register with GCM during SETUP (can work offline, faster)
+					GCMRegistrar.register(getApplicationContext(), gSenderID);
+				}
 				result = true;
 				callbackContext.success();
 			} catch (JSONException e) {

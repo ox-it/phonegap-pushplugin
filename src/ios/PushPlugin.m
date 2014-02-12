@@ -43,6 +43,11 @@
     [self successWithMessage:@"unregistered"];
 }
 
+- (void)setup:(CDVInvokedUrlCommand*)command;
+{
+    // This is a no-op for iOS, added for symetry with the Android version
+}
+
 - (void)register:(CDVInvokedUrlCommand*)command;
 {
 	self.callbackId = command.callbackId;
