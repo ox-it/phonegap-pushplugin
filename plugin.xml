@@ -59,6 +59,11 @@
 		<source-file src="src/android/com/plugin/gcm/PushPlugin.java" target-dir="src/com/plugin/gcm/" />
 		<source-file src="src/android/com/plugin/android-support-v13.jar" target-dir="libs/" />
 		
+		<info>
+	Check that the launch mode for the main Cordova Activity is one of the singleXXX options in **AndroidManifest.xml**.
+	For example: &lt;activity ... android:launchMode="singleTop"&gt;
+	More info: http://developer.android.com/guide/topics/manifest/activity-element.html#lmode
+		</info>
 	</platform>
 
 	<!-- ios -->

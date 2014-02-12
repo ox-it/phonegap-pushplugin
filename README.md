@@ -69,7 +69,7 @@ This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and
 <uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
 ```
 
-3) Modify your **AndroidManifest.xml** and add the following **activity**, **receiver** and **service** tags to your **application** section. (See the Sample_AndroidManifest.xml file in the Example folder.)
+3) Modify your **AndroidManifest.xml** and add the following **activity**, **receiver** and **service** tags to your **application** section.
 
 ```xml
 <activity android:name="com.plugin.gcm.PushHandlerActivity"/>
@@ -83,13 +83,21 @@ This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and
 <service android:name="com.plugin.gcm.GCMIntentService" />
 ```
 
-4) Modify your **res/xml/config.xml** to include the following line in order to tell Cordova to include this plugin and where it can be found: (See the Sample_config.xml file in the Example folder)
+4) Check that the launch mode for the main Cordova Activity is one of the **[singleXXX](http://developer.android.com/guide/topics/manifest/activity-element.html#lmode)** options in **AndroidManifest.xml**.
+
+```xml
+<activity ... android:launchMode="singleTop">
+```
+
+Otherwise a new activity instance, with a new webview, will be created when activating the notifications.
+
+5) Modify your **res/xml/config.xml** to include the following line in order to tell Cordova to include this plugin and where it can be found: (See the Sample_config.xml file in the Example folder)
 
 ```xml
 <plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
 ```
 
-5) Add the **PushNotification.js** script to your assets/www folder (or javascripts folder, wherever you want really) and reference it in your main index.html file. This file's usage is described in the **Plugin API** section below.
+6) Add the **PushNotification.js** script to your assets/www folder (or javascripts folder, wherever you want really) and reference it in your main index.html file. This file's usage is described in the **Plugin API** section below.
 
 ```html
 <script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
@@ -133,7 +141,7 @@ where
 
 Alternatively this plugin can be installed using the Phonegap CLI.
 
-1) Navigaate to the root folder for your phonegap project.
+1) Navigate to the root folder for your phonegap project.
 2) Run the command.
 
 ```sh
@@ -144,6 +152,15 @@ phonegap local plugin add https://github.com/phonegap-build/PushPlugin.git
 ```
 
 For additional info, take a look at the [Plugman Documentation](https://github.com/apache/cordova-plugman/blob/master/README.md)
+
+### Android
+An additional manual step is required:
+
+Check that the launch mode for the main Cordova Activity is one of the **[singleXXX](http://developer.android.com/guide/topics/manifest/activity-element.html#lmode)** options in **AndroidManifest.xml**.
+
+```xml
+<activity ... android:launchMode="singleTop">
+```
 
 ## Plugin API
 
