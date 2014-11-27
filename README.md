@@ -1,4 +1,8 @@
-# Cordova Push Notifications Plugin for Android and iOS
+# DEPRECATED
+
+**This is not used anymore and should not be used**, do use phonegap-build/PushPlugin
+
+Cordova Push Notifications Plugin for Android and iOS
 
 ---
 
